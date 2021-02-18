@@ -1,14 +1,27 @@
 import React from 'react';
-import './ApodInfo.css';
+import styled from 'styled-components';
+
+const StyledApodInfo = styled.div`
+	& {
+		margin-bottom: 20px;
+		background-color: '#202324';
+		color: '#d8d4cf';
+	}
+	p {
+		color: '#d8d4cf';
+	}
+`;
 
 const ApodInfo = ({ apodData, toggleApodInfo }) => {
 	return (
-		<div className='apodInfo-container'>
+		<StyledApodInfo>
 			<p>{apodData.explanation}</p>
-			<p>Photographer: {apodData.copyright}</p>
+			<p>
+				Photographer: <strong>{apodData.copyright}</strong>
+			</p>
 			<p>Date: {apodData.date}</p>
 			<a
-				href='#'
+				href='/'
 				onClick={(e) => {
 					e.preventDefault();
 					toggleApodInfo();
@@ -16,7 +29,7 @@ const ApodInfo = ({ apodData, toggleApodInfo }) => {
 			>
 				Show Less
 			</a>
-		</div>
+		</StyledApodInfo>
 	);
 };
 

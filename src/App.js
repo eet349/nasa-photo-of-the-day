@@ -1,7 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import ApodInfo from './components/ApodInfo/ApodInfo';
-import './App.css';
+
+const StyledApp = styled.div`
+	& {
+		text-align: center;
+		background-color: #202324;
+		color: #d8d4cf;
+	}
+
+	a {
+		text-decoration: none;
+		display: block;
+		margin: 25px 0;
+		color: #3391ff;
+		&:visited {
+			color: #3391ff;
+		}
+	}
+
+	p {
+		margin: 20px 20%;
+	}
+`;
 
 function App() {
 	const [apodData, setApodData] = useState(null);
@@ -22,26 +44,25 @@ function App() {
 		return <h3>Loading</h3>;
 	} else {
 		return (
-			<div className='App'>
+			<StyledApp>
 				<h1>NASA Astronomy Photo of the Day ({apodData.date})</h1>
 				<h2>{apodData.title}</h2>
-				<img src={apodData.url} />
+				<img src={apodData.url} alt={apodData.title} />
 
 				{showApodInfo ? (
 					<ApodInfo apodData={apodData} toggleApodInfo={toggleApodInfo} />
 				) : (
 					<a
-						style={{ display: 'block' }}
-						href='#'
+						href='/'
 						onClick={(e) => {
 							e.preventDefault();
 							toggleApodInfo();
 						}}
 					>
-						More Info
+						Show More
 					</a>
 				)}
-			</div>
+			</StyledApp>
 		);
 	}
 }
